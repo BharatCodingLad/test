@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <link rel="stylesheet" href="jobApply.css">
+</head>
+<body>
+    <div class="bodyBg">
+        <div class="formStyle">
+            <div>
+                <h1 style="font-size: 25px;">Job Application (Web)</h1>
+                <form action="">
+                    <div class="contentStyle">
+                        <label for="fName"><b>First Name</b></label>
+                        <input type="text" placeholder="Enter First Name..." id = "fName" required>
+                    </div>
+                    <div class="contentStyle">
+                        <label for="lName"><b>Last Name</b></label>
+                        <input type="text" placeholder="Enter Last Name..." id = "lName">
+                    </div>
+                    <div class="contentStyle">
+                        <label for="email"><b>Email</b></label>
+                        <input type="email" placeholder="Enter Email..." id = "email" required>
+                    </div>
+                    <div class="contentStyle">
+                        <label for="job"><b>Job Role</b></label>
+                        <select name="job" id="job" style="background-color: gray;" required>
+                            <option value=""><b>Select Job Role</b></option>
+                            <option value="frontend">Frontend Developer</option>
+                            <option value="backend">Backend Developer</option>
+                            <option value="full_stack">Full Stack Developer</option>
+                            <option value="ui_ux">Ui-Ux Developer</option>
+                        </select>
+                    </div>
+                    <div class="contentStyle">
+                        <label for="address"><b>Address</b></label>
+                        <textarea name="address" id="address" placeholder="Enter Address..." rows="5" cols="80" required></textarea>
+                    </div>
+                    <div class="contentStyle">
+                        <label for="city"><b>City</b></label>
+                        <input type="text" placeholder="Enter city..." id = "city" required>
+                    </div>
+                    <div class="contentStyle">
+                        <label for="pincode"><b>Pincode</b></label>
+                        <input type="text" placeholder="Enter Pincode..." id="pincode" pattern="56[0-9]{4}" required>
+                    </div>
+                    <div class="contentStyle">
+                        <label for="date"><b>Start Date</b></label>
+                        <input type="date" id="date" value="2024-11-21" required>
+                    </div>
+                    <div class="contentStyle">
+                        <label for="upload"><b>Upload Your CV</b></label>
+                        <input type="file" name="upload" id="upload" required>
+                    </div>
+                    <div class="divButton">
+                        <button type="submit">Apply Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
