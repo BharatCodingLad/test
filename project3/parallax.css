@@ -3,7 +3,7 @@
     padding: 0;
 }
 .container{
-    background-image: url(/images/image1.png);
+    background-image: url(/project3/image1.png);
     min-height: 100vh;
     position: relative;
     background-position: center;
@@ -40,7 +40,7 @@
     padding: 20px;
 }
 .image2{
-    background-image: url(/images/image2.png);
+    background-image: url(/project3/image2.png);
     min-height: 400px;
     position: relative;
     background-position: center;
@@ -79,7 +79,7 @@
     padding: 20px;
 }
 .image3{
-    background-image: url(/images/image3.png);
+    background-image: url(/project3/image3.png);
     min-height: 400px;
     position: relative;
     background-position: center;
