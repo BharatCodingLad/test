@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.hero{
+    height: 500px;
+    width: 200px;
+    text-align: center;
+}
+.blue{
+    background:blue;
+}
+.white{
+    background: white;
+}
+.orange{
+    background: orange;
+
+}
+.green{
+    background: green;
+}
