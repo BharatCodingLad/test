@@ -177,13 +177,37 @@
 .frame2 span:hover{
     background-color: black !important;
 }
-.frame3{
+.frame4{
+    position: absolute;
     display: grid;
-    grid-template-columns: 250px 250px 250px 250px;
-    grid-template-rows: 250px 250px 250px;
-    height: 750px;
-    width: 1000px;
-    background-color: #282828;
-    margin-top: 20%;
+    grid-template-columns: 350px 350px 350px 350px;
+    grid-template-rows: 300px 300px 300px;
+    height: 595px;
+    width: 93%;
+    margin-top: 9%;
+    margin-left: 6%;
+}
+.col1{
+    position: relative;
+    height: 250px;
+    width: 350px;
+}
+.col1 img{
+    position: absolute;
+}
+.col1 img:hover:nth-child(1){
+    transition: transform 0.3s ease,box-shadow 0.3s ease;
+    transform: scale(1.02);
+    box-shadow: 0px 2px 4px rgba(0,0,0,1);
+    cursor: pointer;
+}
+.text1{
+    position: absolute;
+    height: 50px;
+    width: 200px;
+    font-family: 'Roboto',sans-serif;
+    color: #282828;
+    margin-top: 180px;
+    margin-left: 50px;
 }
 
