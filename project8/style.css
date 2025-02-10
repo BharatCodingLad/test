@@ -1,0 +1,148 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html {
+    scroll-behavior: smooth;
+}
+.frame1{
+    position: fixed;
+    height: 1024px;
+    width: 20%;
+    border: 3px solid black;
+    font-family: 'Roboto',sans-serif;
+}
+.intro{
+    height: 100px;
+    width: 300px;
+}
+.text1{
+    height: 40px;
+    width: 200px;
+    font-size: 30px;
+    padding-left: 70px;
+}
+.text2{
+    height: 50px;
+    width: 250px;
+    font-size: 30px;
+    font-family: 'Roboto',sans-serif;
+    padding-left: 40px;
+}
+.option1{
+    height: 50px;
+    width: 300px;
+    border: 3px solid black;
+    text-align: center;
+    align-content: center;
+}
+.option1:hover{
+    transition: background-color 0.3 ease;
+    background-color: gray;
+    cursor: pointer;
+}
+.option1 a{
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+.frame2{
+    height: 100vh;
+    margin-left: 21%;
+    font-family: 'Roboto',sans-serif;
+}
+.introduction,.whatText,.javascript,.hello,.variables{
+    height: 400px;
+    padding: 30px;
+}
+.example{
+    position: relative;
+    height: 100px;
+    width: 1000px;
+    background-color: #EBEBEB;
+    margin-top: 50px;
+    margin-left: 40px;
+    border-radius: 10px;
+}
+.example:hover{
+    transition: transform 0.3s ease,box-shadow 0.3s ease;
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0,0,0,1);
+    cursor: pointer;
+}
+@keyframes wave1 {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(50px);
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}
+
+@keyframes wave2 {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(50px);
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}
+.introduction h1 {
+    display: inline-block; /* Ensures the scaling doesn't affect layout */
+}
+.whatText h1{
+    display: inline-block; 
+}
+.javascript h1{
+    display: inline-block; 
+}
+.hello h1{
+    display: inline-block; 
+}
+.variables h1{
+    display: inline-block; 
+}
+
+@keyframes size {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.introduction h1:hover {
+    animation: size 0.5s ease-in-out forwards;
+}
+.whatText h1:hover {
+    animation: size 0.5s ease-in-out forwards;
+}
+.javascript h1:hover {
+    animation: size 0.5s ease-in-out forwards;
+}
+.hello h1:hover {
+    animation: size 0.5s ease-in-out forwards;
+}
+.variables h1:hover {
+    animation: size 0.5s ease-in-out forwards;
+}
+
+.example:hover p:nth-child(1) {
+    animation: wave1 0.5s ease-in-out forwards;
+}
+
+.example:hover p:nth-child(2) {
+    animation: wave2 0.5s ease-in-out 0.1s forwards; /* Delayed effect */
+}
+
+
