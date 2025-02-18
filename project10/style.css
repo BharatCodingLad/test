@@ -70,6 +70,24 @@
     min-width: 100px;
     padding: 10px 15px;
 }
+.menu-item{
+    text-decoration: none;
+}
+/* Line Effect */
+.menu-item::before {
+    content: '';
+    position: absolute;
+    bottom: -5%;
+    left: 15%;
+    width: 0%;
+    height: 3px;
+    background-color: yellow;
+    transition: width 0.4s ease-out; /* Make the line appear */
+}
+
+.menu-item:hover::before {
+    width: 70%; /* Line grows when hovering */
+}
 
 /* Hide text on hover */
 .menu-item:hover {
@@ -89,6 +107,7 @@
     pointer-events: none;
     mix-blend-mode: multiply; /* Removes white background */
 }
+
 /* Show video on hover */
 .menu-item:hover .menu-video {
     opacity: 1;
@@ -163,7 +182,7 @@
     padding: 20px;
     box-sizing: border-box;
 }
-/* Second Column: Text Introduction */
+
 .intro {
     display: flex;
     flex-direction: column;
@@ -178,6 +197,7 @@
     font-weight: bold;
     color: yellow;
 }
+
 .moving-text {
     font-family: 'Courier New', monospace; /* Monospace for exact character width */
     font-size: 2rem;
@@ -189,36 +209,16 @@
     display: inline-block;
     vertical-align: bottom;
     width: 0; /* Start with no width */
-    animation: 
-        typing-erasing 9s infinite; /* Total animation duration */
+    animation: typing-erasing 9s infinite; /* Total animation duration */
 }
 
 /* Combined Typing and Erasing Animation */
 @keyframes typing-erasing {
-    /* Typing Phase (0-4s) */
-    0% { 
-        width: 0; 
-        border-right-color: yellow; /* Show cursor during typing */
-    }
-    44.44% { 
-        width: 18ch; /* 18 characters ("Frontend Developer!") */
-        border-right-color: yellow; 
-    }
-    /* Pause After Typing (4-5s) */
-    55.55% { 
-        width: 18ch; 
-        border-right-color: transparent; /* Hide cursor during pause */
-    }
-    /* Erasing Phase (5-9s) */
-    88.88% { 
-        width: 0; 
-        border-right-color: yellow; /* Show cursor during erasing */
-    }
-    /* Pause After Erasing (9-10s) */
-    100% { 
-        width: 0; 
-        border-right-color: transparent; 
-    }
+    0% { width: 0; border-right-color: yellow; }
+    44.44% { width: 18ch; border-right-color: yellow; }
+    55.55% { width: 18ch; border-right-color: transparent; }
+    88.88% { width: 0; border-right-color: yellow; }
+    100% { width: 0; border-right-color: transparent; }
 }
 
 /* Smooth cursor blinking during active phases */
@@ -227,9 +227,38 @@
     50% { border-right-color: transparent; }
 }
 
-/* Link cursor blinking to active phases */
-.moving-text {
-    animation: 
-        typing-erasing 9s steps(40, end) infinite, /* Steps for letter-by-letter */
-        cursor-blink 0.75s step-end infinite;
+@keyframes decoration {
+    0% { opacity: 0; transform: translateX(100px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
+.moving-text {
+    animation: typing-erasing 9s steps(40, end) infinite, cursor-blink 0.75s step-end infinite;
+}
+
+.intro h1, .intro h2 {
+    opacity: 0; /* Start hidden */
+    animation: decoration 1s forwards;
+}
+
+.intro h1:nth-child(1) { animation-delay: 0s; }
+.intro h2:nth-child(2) { animation-delay: 0.4s; }
+.intro h1:nth-child(3) { animation-delay: 0.8s; }
+/* Desktop 2 Styling */
+.desktop2 {
+    position: relative;
+    background-color: #003251;
+    min-height: 100vh;
+}
+
+.f1 {
+    position: absolute;
+    background-color: red;
+    min-height: 500px;
+    width: 1000px;
+    margin-left: 16%;
+    margin-top: 11%;
+    display: grid;
+    grid-template-columns: repeat(250px);
+    grid-template-rows: repeat(250px);
+}
+
