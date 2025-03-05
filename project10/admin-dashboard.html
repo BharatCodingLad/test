@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1a73e8;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #5f6368;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            padding: 0.8rem 1.5rem;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #1557b0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #5f6368;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            color: #1a73e8;
+        }
+
+        .project-list {
+            margin-top: 2rem;
+            border-top: 1px solid #dadce0;
+            padding-top: 1rem;
+        }
+
+        .project-item {
+            padding: 1rem;
+            border: 1px solid #dadce0;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .preview-image {
+            max-width: 200px;
+            max-height: 150px;
+            margin-top: 10px;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Add New Project</h1>
+        <form id="addProjectForm" onsubmit="return addProject(event)">
+            <div class="form-group">
+                <label for="projectName">Project Name</label>
+                <input type="text" id="projectName" required>
+            </div>
+            <div class="form-group">
+                <label for="projectPath">Project Path</label>
+                <input type="text" id="projectPath" required>
+            </div>
+            <div class="form-group">
+                <label for="projectImage">Project Image URL</label>
+                <input type="text" id="projectImage" required 
+                       placeholder="Enter image URL or path" 
+                       onchange="previewImage(this.value)">
+                <img id="imagePreview" class="preview-image" alt="Preview">
+            </div>
+            <button type="submit" class="submit-btn">Add Project</button>
+        </form>
+        <div class="project-list">
+            <h2>Current Projects</h2>
+            <div id="projectsList"></div>
+        </div>
+        <a href="index.html" class="back-btn">Back to Portfolio</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', loadProjects);
+
+        function previewImage(url) {
+            const preview = document.getElementById('imagePreview');
+            preview.style.display = 'block';
+            preview.src = url;
+        }
+
+        function addProject(event) {
+            event.preventDefault();
+            
+            const projectName = document.getElementById('projectName').value;
+            const projectPath = document.getElementById('projectPath').value;
+            const projectImage = document.getElementById('projectImage').value;
+
+            let projects = JSON.parse(localStorage.getItem('portfolioProjects') || '[]');
+            
+            projects.push({
+                name: projectName,
+                path: projectPath,
+                image: projectImage
+            });
+
+            localStorage.setItem('portfolioProjects', JSON.stringify(projects));
+            loadProjects();
+            document.getElementById('addProjectForm').reset();
+            document.getElementById('imagePreview').style.display = 'none';
+            
+            return false;
+        }
+
+        function loadProjects() {
+            const projectsList = document.getElementById('projectsList');
+            const projects = JSON.parse(localStorage.getItem('portfolioProjects') || '[]');
+
+            projectsList.innerHTML = projects.map((project, index) => `
+                <div class="project-item">
+                    <span>${project.name}</span>
+                    <img src="${project.image}" alt="${project.name}" style="width: 50px; height: 50px; border-radius: 5px; margin: 0 10px;">
+                    <button onclick="deleteProject(${index})" class="delete-btn">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function deleteProject(index) {
+            let projects = JSON.parse(localStorage.getItem('portfolioProjects') || '[]');
+            projects.splice(index, 1);
+            localStorage.setItem('portfolioProjects', JSON.stringify(projects));
+            loadProjects();
+        }
+    </script>
+</body>
+</html>

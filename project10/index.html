@@ -37,6 +37,10 @@
                         <source src="/project10/system-regular-17-assignment-hover-assignment.mp4" type="video/mp4">
                     </video>
                 </a>
+                <a href="./admin-login.html" class="menu-item">
+                    <span>Admin</span>
+                    <img class="menu-video" src="/project10/icons8-admin.gif" alt="admin icon">
+                </a>
             </div>
         </div>
 
@@ -70,13 +74,13 @@
 
     <div class="desktop2">
         <div class="f1" id="project">
-            <div class="card1"><div class="detail"><span>Job Application</span></div></div>
-            <div class="card2"><div class="detail"><span>Parallax Webpage</span></div></div>
-            <div class="card3"><div class="detail"><span>Landing Page</span></div></div>
-            <div class="card4"><div class="detail"><span>Restaurant Website</span></div></div>
-            <div class="card5"><div class="detail"><span>Music Webpage</span></div></div>
-            <div class="card6"><div class="detail"><span>Youtube Interface</span></div></div>
-            <div class="card7"><div class="detail"><span>Javascript Documentation</span></div></div>
+            <div class="card1" data-path="/project2/jobApplication.html"><div class="detail"><span>Job Application</span></div></div>
+            <div class="card2" data-path="/project3/parallax.html"><div class="detail"><span>Parallax Webpage</span></div></div>
+            <div class="card3" data-path="/project4/developer.html"><div class="detail"><span>Landing Page</span></div></div>
+            <div class="card4" data-path="/project5/restaurent.html"><div class="detail"><span>Restaurant Website</span></div></div>
+            <div class="card5" data-path="/project6/index.html"><div class="detail"><span>Music Webpage</span></div></div>
+            <div class="card6" data-path="/project7/index.html"><div class="detail"><span>Youtube Interface</span></div></div>
+            <div class="card7" data-path="/projecct8/index.html"><div class="detail"><span>Javascript Documentation</span></div></div>
         </div>
 
         <div class="contact" id="contact">
@@ -108,5 +112,87 @@
             </div>
         </div>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sections = document.querySelectorAll('#home, #project, #contact');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // Adjust this value as needed
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                } else {
+                    entry.target.classList.remove('animate');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add click event listeners to project cards
+        const projectCards = document.querySelectorAll('.f1 .detail');
+        projectCards.forEach(card => {
+            card.addEventListener('click', function () {
+                const path = this.parentElement.getAttribute('data-path');
+                window.location.href = path;
+            });
+        });
+    });
+    </script>
+
+    <!-- Add this script before the closing body tag -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load and display projects
+            function loadProjects() {
+                const projectContainer = document.querySelector('.f1');
+                const defaultProjects = [
+                    {name: "Job Application", path: "/project2/jobApplication.html", image: "/project10/Screenshot 2025-02-19 210011.png"},
+                    {name: "Parallax Webpage", path: "/project3/parallax.html", image: "/project10/Screenshot 2025-02-19 210058.png"},
+                    {name: "Landing Page", path: "/project4/developer.html", image: "/project10/Screenshot 2025-02-19 210140.png"},
+                    {name: "Restaurant Website", path: "/project5/restaurent.html", image: "/project10/Screenshot 2025-02-19 210249.png"},
+                    {name: "Music Webpage", path: "/project6/index.html", image: "/project10/Screenshot 2025-02-19 210328.png"},
+                    {name: "Youtube Interface", path: "/project7/index.html", image: "/project10/Screenshot 2025-02-19 210422.png"},
+                    {name: "Javascript Documentation", path: "/projecct8/index.html", image: "/project10/Screenshot 2025-02-19 210514.png"}
+                ];
+
+                const additionalProjects = JSON.parse(localStorage.getItem('portfolioProjects') || '[]');
+                const allProjects = [...defaultProjects, ...additionalProjects];
+
+                projectContainer.innerHTML = allProjects.map((project, index) => `
+                    <div class="card${index + 1}" data-path="${project.path}" style="background-image: url('${project.image}')"
+                         onmouseover="this.classList.add('animate')" 
+                         onmouseout="this.classList.remove('animate')">
+                        <div class="detail">
+                            <span>${project.name}</span>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Add click event listeners and animation observers for all cards
+                const projectCards = document.querySelectorAll('.f1 [class^="card"]');
+                projectCards.forEach(card => {
+                    // Click event
+                    card.querySelector('.detail').addEventListener('click', function () {
+                        const path = this.parentElement.getAttribute('data-path');
+                        window.location.href = path;
+                    });
+
+                    // Add to intersection observer
+                    observer.observe(card);
+                });
+            }
+
+            loadProjects();
+        });
+    </script>
 </body>
 </html>

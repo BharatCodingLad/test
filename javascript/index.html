@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Machine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="slot_machine">
+        <div class="slot1" id="slot1"></div>
+        <div class="slot2" id="slot2"></div>
+        <div class="slot3" id="slot3"></div>
+        <div class="bid" >
+            <input type="number" placeholder="Enter your bid" class="bid_input" min="100" id="bid_input">
+            
+        </div>
+        <div class="profit">
+            <input type="text" placeholder="Your profit" class="profit_input" disabled id="profit_input">
+        </div>
+        <div class="spin" id="spin">
+            <span class="button">Spin</span>
+        </div>
+    </div>
+    <script>
+        var bid_input = document.getElementById("bid_input");
+        var profit_input = document.getElementById("profit_input");
+        if(bid_input >= 100){
+            var slots = ["apple", "banana", "cherry", "grape", "orange", "watermelon"];
+            var slot1 = document.getElementById("slot1");
+            var slot2 = document.getElementById("slot2");
+            var slot3 = document.getElementById("slot3");
+            var spin = document.getElementById("spin");
+            spin.addEventListener("click", function() {
+                var random1 = Math.floor(Math.random() * slots.length);
+                var random2 = Math.floor(Math.random() * slots.length);
+                var random3 = Math.floor(Math.random() * slots.length);
+                slot1.textContent = slots[random1];
+                slot2.textContent = slots[random2];
+                slot3.textContent = slots[random3];
+                var total_profit = random1 + random2 + random3;
+                if (total_profit >= bid_input.value) {
+                    profit_input.value =  (total_profit - bid_input.value);
+                }
+                else {
+                    profit_input.value = (bid_input.value - total_profit);
+                }
+            });
+        }
+        else{
+            alert("Please enter a bid greater than 100");
+        }
+    </script>
+</body>
+</html>

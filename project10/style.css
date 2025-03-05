@@ -106,12 +106,14 @@ html{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40px;
+    width: 40px;  /* adjust size as needed */
     height: 40px;
     opacity: 0;
     transition: opacity 0.4s ease-in-out;
     pointer-events: none;
     mix-blend-mode: multiply; /* Removes white background */
+    display: block;
+    margin: 0 auto;
 }
 
 /* Show video on hover */
@@ -557,6 +559,40 @@ html{
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+/* Add this to your existing CSS */
+[class^="card"] {
+    height: 250px;
+    width: 350px;
+    border-radius: 10%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 2s ease;
+}
+
+[class^="card"].animate {
+    transform: scale(1.02);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 1);
+}
+
+[class^="card"]:hover .detail {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+[class^="card"] .detail {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
 }
 
 
